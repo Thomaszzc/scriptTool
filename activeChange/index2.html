@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		#outer{
+			border:1px solid #ccc;
+			width: 400px;
+			height: 600px;
+			margin:0 auto;
+		}
+		#header{
+			border-bottom: 1px solid #ccc;
+			position: relative;
+		}
+		#header span{
+			width: 50%;
+			display: inline-block;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+		}
+		#rect{
+			border-top:1px solid #ccc;
+			border-left:1px solid #ccc;
+			transform: rotate(45deg);
+			width: 6px;
+			height: 6px;
+			position: absolute;
+			top:37px;
+			background-color: #fff;
+			left:25%;
+		}
+		#left:hover{
+			color:green;
+		}
+		#right:hover{
+			color:green;
+		}
+		#left:hover~#rect{
+			left:25%;
+		}
+		#right:hover~#rect{
+			left:75%;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="header">
+			<span id="left">left</span><span id="right">right</span>
+			<div id="rect"></div>
+		</div>
+	</div>
+</body>
+</html>

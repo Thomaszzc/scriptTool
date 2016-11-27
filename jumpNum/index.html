@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin:0px;
+		}
+		#container{
+			width:400px;
+			height: 600px;
+			border:1px solid #ccc;
+			margin:0 auto;
+		}
+		input[type="button"]{
+			border:1px solid #ccc;
+			padding:5px 10px;
+		}
+		#btnContainer{
+			display: flex;
+			justify-content: space-around;
+			margin:10px 0;			
+		}
+		#numContainer{
+			border-top:1px solid #ccc;
+			text-align: center;
+			padding-top: 40px;
+		}
+		@keyframes bounce{
+			from{
+				margin-top:-8px;
+			}
+			to{
+				margin-top:3px;
+			}
+			
+		}
+		#numLast{
+			animation: bounce 1s;
+			display: inline-block;
+			color:#f00;
+			font-size: 1.4em;
+			position: absolute;
+		}
+		#lastContainer{
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+	<span id="btnContainer">
+		<input type="button" id="start" value="开始">
+		<input type="button" id="end" value="结束">
+	</span>
+	<div id="numContainer">
+	<span id="numBefore"></span><span id="lastContainer"></span>
+	</div>
+	</div>
+	<script type="text/javascript">
+		'use strict';
+		var flag;
+		document.querySelector('#start').onclick=function(){
+			var show=setNum(1);
+			if(flag!=null){
+				window.clearInterval(flag);
+			}
+			flag=setInterval(function(){
+				show();
+			}, 1000);
+		}
+		document.querySelector('#end').onclick=function(){
+			if(flag!=null){
+				window.clearInterval(flag);
+			}
+		}
+		//利用闭包实现了自增
+		function setNum(num){
+			function incr(){
+				num++;
+				var strNum=num.toString();
+				var numBefore='',
+					numLast='';
+				if(num>=10){
+					numBefore=strNum.slice(0,strNum.length-1);
+					console.log(numBefore);
+				}
+				numLast=strNum.slice(-1);
+				document.getElementById('numBefore').innerHTML=numBefore;
+				document.getElementById('lastContainer').innerHTML='<span id="numLast">'+numLast+'</span>';
+
+				return num;
+			}
+			return incr;
+		}
+		
+	</script>
+</body>
+</html>
